@@ -9,6 +9,12 @@
 6. train_randomforest.py --> training of another model using random forest, daves the model as rf_trained_model.
 7. train_xgb --> training of another model using xgboost, daves the model as xgb_trained_model.
 8. predict.py --> predicts the sepsis label and creates 'prediction.csv'.
-9. 
-10. files that were used during the analysis and computation of f1 score - importance.py, analize_different_groups_by_age.py, analize_different_groups_by_gender.py,   
+9. files that were used during the analysis and computation of f1 score - importance.py, analize_different_groups_by_age.py, analize_different_groups_by_gender.py,   
    analize_different_groups_by_iculus.py, analize_different_groups_by_temp.py, evaluate_randomforest.py, final_exploration.py.
+   
+# Please notice that the folders - '05May23' and 'adaboost_last_row_relevant_cols' are our beckup folders, please ignore them. 
+
+In order to run predict.py- 
+1. Run conda env create --file environment.yml
+2. Run conda activate hw1_env
+3. Run python predict.py 'path to test/ unseen data'. Note that the current prediction.csv file in our repo is the predictions for the rest data. 
