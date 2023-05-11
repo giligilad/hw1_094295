@@ -32,10 +32,10 @@ for i, file in enumerate(files):
         combined_df = pd.concat([combined_df, df], ignore_index=True)
 combined_df.reset_index(inplace=True)
 print(combined_df.columns)
-combined_df.to_csv("unseen_data.csv", index=False)
+combined_df.to_csv("unseen_data1.csv", index=False)
 
 # read the aggregate csv:
-combined_df = pd.read_csv('unseen_data.csv', index_col=0)
+combined_df = pd.read_csv('unseen_data1.csv', index_col=0)
 all_columns = ['ICULOS', 'Temp', 'HR', 'WBC', 'BUN', 'Resp', 'Calcium', 'DBP', 'Hct', 'Hgb', 'MAP', 'HospAdmTime',
                'Creatinine', 'SBP', 'Glucose', 'Magnesium', 'Gender', 'O2Sat', 'Potassium', 'Age', 'id', 'SepsisLabel']
 x_columns = all_columns[:-1]
