@@ -2,15 +2,21 @@ from sklearn.ensemble import AdaBoostClassifier
 import pickle
 import pandas as pd
 import os
+import sys
 
-#load data:
-train_directory = 'data/test/'
+# load data:
+train_directory = sys.argv[1]
+#train_directory = 'data/test/'
 all_train_files = [file for file in os.listdir(train_directory) if file.endswith('.psv')]
 combined_df = pd.DataFrame()
-for i, file in enumerate(all_train_files):
+
+files = sorted(os.listdir('data/test'), key=lambda x: int(x.split('_')[1].split('.')[0]))
+
+for i, file in enumerate(files):
     if i % 1000 == 0:
         print(i)
     file_path = train_directory + file
+    print(file_path)
     df = pd.read_csv(file_path, delimiter='|')
     id = file_path.split("patient_")[-1].strip(".psv")
     df['id'] = [id] * len(df)
@@ -28,11 +34,10 @@ combined_df.reset_index(inplace=True)
 print(combined_df.columns)
 combined_df.to_csv("unseen_data.csv", index=False)
 
-
 # read the aggregate csv:
 combined_df = pd.read_csv('unseen_data.csv', index_col=0)
 all_columns = ['ICULOS', 'Temp', 'HR', 'WBC', 'BUN', 'Resp', 'Calcium', 'DBP', 'Hct', 'Hgb', 'MAP', 'HospAdmTime',
-             'Creatinine', 'SBP', 'Glucose', 'Magnesium', 'Gender', 'O2Sat', 'Potassium', 'Age','id','SepsisLabel']
+               'Creatinine', 'SBP', 'Glucose', 'Magnesium', 'Gender', 'O2Sat', 'Potassium', 'Age', 'id', 'SepsisLabel']
 x_columns = all_columns[:-1]
 
 combined_df = combined_df[all_columns]
@@ -61,15 +66,16 @@ y_test = agg_data['SepsisLabel']
 filename = 'adaboost_trained_model'
 loaded_model = pickle.load(open(filename, 'rb'))
 
-#calculate f1 score:
+# calculate f1 score:
 from sklearn.metrics import f1_score
-y_pred= loaded_model.predict(X_test)
+
+y_pred = loaded_model.predict(X_test)
 f1 = f1_score(y_test, y_pred)
 print("F1-score: {:.2f}".format(f1))
 
-agg_data['id']= agg_data['id'].apply(lambda x:'patient_' + str(x))
+agg_data['id'] = agg_data['id'].apply(lambda x: 'patient_' + str(x))
 
-#create labeled csv:
-dict_labeled = {'id' : agg_data['id'], 'prediction' : y_pred}
+# create labeled csv:
+dict_labeled = {'id': agg_data['id'], 'prediction': y_pred}
 final_df = pd.DataFrame(dict_labeled)
-final_df.to_csv('prediction.csv',index = False)
+final_df.to_csv('prediction.csv', index=False)
