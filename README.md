@@ -9,4 +9,6 @@
 6. train_randomforest.py --> training of another model using random forest, daves the model as rf_trained_model.
 7. train_xgb --> training of another model using xgboost, daves the model as xgb_trained_model.
 8. predict.py --> predicts the sepsis label and creates 'prediction.csv'.
-9. files that were used during the analysis and computation of f1 score - importance.py,
+9. 
+10. files that were used during the analysis and computation of f1 score - importance.py, analize_different_groups_by_age.py, analize_different_groups_by_gender.py,   
+   analize_different_groups_by_iculus.py, analize_different_groups_by_temp.py, evaluate_randomforest.py, final_exploration.py.
