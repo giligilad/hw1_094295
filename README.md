@@ -12,7 +12,7 @@
 9. files that were used during the analysis and computation of f1 score - importance.py, analize_different_groups_by_age.py, analize_different_groups_by_gender.py,   
    analize_different_groups_by_iculus.py, analize_different_groups_by_temp.py, evaluate_randomforest.py, final_exploration.py.
    
-# Please notice that the folders - '05May23' and 'adaboost_last_row_relevant_cols' are our beckup folders, please ignore them. 
+### Please notice that the folders - '05May23' and 'adaboost_last_row_relevant_cols' are our beckup folders, please ignore them. 
 
 In order to run predict.py- 
 1. Run conda env create --file environment.yml
