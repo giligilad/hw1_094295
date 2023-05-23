@@ -10,7 +10,7 @@ train_directory = sys.argv[1]
 all_train_files = [file for file in os.listdir(train_directory) if file.endswith('.psv')]
 combined_df = pd.DataFrame()
 
-files = sorted(os.listdir('data/test'), key=lambda x: int(x.split('_')[1].split('.')[0]))
+files = sorted(all_train_files, key=lambda x: int(x.split('_')[1].split('.')[0]))
 
 for i, file in enumerate(files):
     if i % 1000 == 0:
